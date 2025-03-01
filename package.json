@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
-    "lint": "eslint"
+    "lint": "eslint",
+    "json-server": "json-server --watch db.json --port 5000"
   },
   "dependencies": {
     "@capacitor/app": "7.0.0",
@@ -21,12 +22,14 @@
     "@ionic/react-router": "^8.4.3",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.8.1",
     "bootstrap": "^5.3.3",
     "ionicons": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^5.3.4",
-    "react-router-dom": "^5.3.4"
+    "react-router-dom": "^5.3.4",
+    "react-toastify": "^11.0.5"
   },
   "devDependencies": {
     "@capacitor/cli": "7.0.1",
@@ -45,6 +48,7 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
     "jsdom": "^22.1.0",
+    "json-server": "^1.0.0-beta.3",
     "terser": "^5.4.0",
     "typescript": "^5.1.6",
     "typescript-eslint": "^8.24.0",
