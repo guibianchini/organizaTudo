@@ -5,11 +5,11 @@ import ErrorComponent from "../../components/ErrorComponent";
 import Header from "../../components/Header";
 import Task from "../../services/tasks/types/Task";
 import TaskItem from "../../components/TaskItem";
-import { useTaskContext } from "../../contexts/TasksContext";
+import { useTasksContext } from "../../contexts/TasksContext";
 import TaskForm from "../../components/TaskForm";
 
 const Tasks: React.FC = () => {
-  const { loading, error, tasks, createTask, deleteTask } = useTaskContext();
+  const { loading, error, tasks, createTask } = useTasksContext();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   if (loading) {
@@ -40,7 +40,7 @@ const Tasks: React.FC = () => {
       <IonContent>
         <IonList>
           {tasks?.map((task: Task) => (
-            <TaskItem key={task?.id} task={task} onDelete={deleteTask} />
+            <TaskItem key={task?.id} task={task} />
           ))}
         </IonList>
         <IonButton expand="full" onClick={() => setIsFormOpen(true)}>

@@ -7,15 +7,8 @@ import {
   IonTitle,
   IonButton,
 } from "@ionic/react";
-import { useHistory } from "react-router-dom";
 
 const Home: React.FC = () => {
-  const history = useHistory();
-
-  const navigateToTasks = () => {
-    history.push("/tasks");
-  };
-
   return (
     <IonPage>
       <IonHeader>
@@ -25,7 +18,7 @@ const Home: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        <IonButton expand="full" onClick={navigateToTasks}>
+        <IonButton expand="full" routerLink="/tasks">
           Ir para as Tarefas
         </IonButton>
       </IonContent>

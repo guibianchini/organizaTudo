@@ -9,7 +9,9 @@ import "@ionic/react/css/core.css";
 import Home from "./pages/Home";
 import Tasks from "./pages/Tasks";
 
-import { TaskProvider } from "./contexts/TasksContext";
+import { TasksProvider } from "./contexts/TasksContext";
+import ViewTask from "./pages/ViewTask";
+import { ViewTaskProvider } from "./contexts/ViewTaskContext";
 
 setupIonicReact();
 
@@ -17,10 +19,17 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/" component={Home} exact />
-        <TaskProvider>
-          <Route path="/tasks" component={Tasks} exact />
-        </TaskProvider>
+        <Route exact path="/" component={Home} />
+        <Route path="/tasks">
+          <TasksProvider>
+            <Tasks />
+          </TasksProvider>
+        </Route>
+        <Route path="/task/:id">
+          <ViewTaskProvider>
+            <ViewTask />
+          </ViewTaskProvider>
+        </Route>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

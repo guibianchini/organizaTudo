@@ -3,18 +3,17 @@ import Task from "../services/tasks/types/Task";
 import TaskService from "../services/tasks";
 import { useRequest } from "ahooks";
 
-interface TaskContextType {
+interface TasksContextType {
   tasks?: Task[];
   loading: boolean;
   error?: Error;
   fetchTasks: () => void;
   createTask: (task: Task) => void;
-  deleteTask: (id: number) => void;
 }
 
-const TaskContext = createContext<TaskContextType | undefined>(undefined);
+const TasksContext = createContext<TasksContextType | undefined>(undefined);
 
-export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
+export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const {
@@ -29,24 +28,19 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
     fetchTasks();
   };
 
-  const deleteTask = async (id: number) => {
-    await TaskService.delete(id);
-    fetchTasks();
-  };
-
   return (
-    <TaskContext.Provider
-      value={{ tasks, loading, error, fetchTasks, createTask, deleteTask }}
+    <TasksContext.Provider
+      value={{ tasks, loading, error, fetchTasks, createTask }}
     >
       {children}
-    </TaskContext.Provider>
+    </TasksContext.Provider>
   );
 };
 
-export const useTaskContext = (): TaskContextType => {
-  const context = useContext(TaskContext);
+export const useTasksContext = (): TasksContextType => {
+  const context = useContext(TasksContext);
   if (!context) {
-    throw new Error("useTaskContext must be used within a TaskProvider");
+    throw new Error("useTasksContext must be used within a TaskProvider");
   }
   return context;
 };

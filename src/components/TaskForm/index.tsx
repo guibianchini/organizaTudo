@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   IonModal,
@@ -22,9 +22,15 @@ interface TaskFormProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (task: Task) => void;
+  initialData?: Task;
 }
 
-const TaskForm: React.FC<TaskFormProps> = ({ isOpen, onClose, onSave }) => {
+const TaskForm: React.FC<TaskFormProps> = ({
+  isOpen,
+  onClose,
+  onSave,
+  initialData,
+}) => {
   const {
     control,
     register,
@@ -33,7 +39,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ isOpen, onClose, onSave }) => {
     clearErrors,
     formState: { errors },
   } = useForm<Task>({
-    defaultValues: {
+    defaultValues: initialData || {
       title: "",
       description: "",
       status: "to do",
@@ -42,6 +48,12 @@ const TaskForm: React.FC<TaskFormProps> = ({ isOpen, onClose, onSave }) => {
       dueDate: null,
     },
   });
+
+  useEffect(() => {
+    if (initialData) {
+      reset(initialData);
+    }
+  }, [initialData, reset]);
 
   const onSubmit = (data: Task) => {
     onSave({ ...data, updatedDate: null });
