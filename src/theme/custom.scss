@@ -14,6 +14,7 @@
   --ion-color-secondary-contrast-rgb: 255,255,255;
   --ion-color-secondary-shade: #{$secondarycolor-dark};
   --ion-color-secondary-tint: #{$secondarycolor-light};
+
 }
 
 .ion-button-primary {
@@ -25,4 +26,8 @@
 
 .ion-icon-primary {
   color: #{$primarycolor} !important;
+}
+
+ion-segment-button {
+  --color-checked:  #{$primarycolor};
 }

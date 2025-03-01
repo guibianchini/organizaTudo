@@ -63,14 +63,7 @@ const ListTasks: React.FC = () => {
             <TaskItem key={task?.id} task={task} />
           ))}
         </IonList>
-        <IonFab vertical="bottom" horizontal="end">
-          <IonFabButton
-            onClick={() => setIsFormOpen(true)}
-            className="ion-button-primary"
-          >
-            <IonIcon icon={add} />
-          </IonFabButton>
-        </IonFab>
+
         <TaskForm
           isOpen={isFormOpen}
           onClose={() => setIsFormOpen(false)}
@@ -80,6 +73,14 @@ const ListTasks: React.FC = () => {
           }}
         />
       </IonContent>
+      <IonFab vertical="bottom" horizontal="end">
+        <IonFabButton
+          onClick={() => setIsFormOpen(true)}
+          className="ion-button-primary"
+        >
+          <IonIcon icon={add} />
+        </IonFabButton>
+      </IonFab>
     </IonPage>
   );
 };

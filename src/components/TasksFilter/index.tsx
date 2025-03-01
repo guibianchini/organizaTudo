@@ -12,6 +12,7 @@ const TasksFilter: React.FC<TaskFilterProps> = ({
 }) => {
   return (
     <IonSegment
+      className="custom-segment"
       value={defaultValue}
       mode="md"
       onIonChange={(e: CustomEvent) => {

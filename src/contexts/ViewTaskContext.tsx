@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from "react";
 import TaskService from "../services/tasks";
 import { useRequest } from "ahooks";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import TaskResponse from "../types/TaskResponse";
 
 interface ViewTaskType {
@@ -19,17 +19,18 @@ export const ViewTaskProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { id } = useParams<{ id: string }>();
+  const history = useHistory();
 
   const {
     data: task,
     loading,
     error,
     run: fetchTask,
-  } = useRequest(() => TaskService.getById(Number(id)));
+  } = useRequest(() => TaskService.getById(Number(id)), { ready: !!id });
 
   const deleteTask = async (id: number) => {
     await TaskService.delete(id);
-    fetchTask();
+    history.push("/tasks", { replace: true });
   };
 
   const editTask = async (task: TaskResponse) => {

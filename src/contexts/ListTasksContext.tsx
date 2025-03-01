@@ -22,7 +22,7 @@ export const ListTasksProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [selectedStatus, setSelectedStatus] = useState<
     "all" | "pending" | "completed"
-  >("all");
+  >("pending");
 
   const {
     data: tasks,

@@ -5,7 +5,7 @@ import api from "../api";
 const TaskService = {
   async get(params: Partial<TaskParams>): Promise<TaskResponse[]> {
     const queryParams: Partial<TaskParams> = {
-      _sort: "creationDate",
+      _sort: "status",
       ...params,
     };
 
@@ -51,10 +51,17 @@ const TaskService = {
     await api().delete(`/tasks/${id}`);
   },
 
-  getColorFromStatus(status: TaskResponse["status"]): string {
+  getColorFromStatus(status?: TaskResponse["status"]): string {
     if (status === "in progress") return "primary";
     if (status === "completed") return "success";
     return "light";
+  },
+
+  getTextFromStatus(status?: TaskResponse["status"]): string {
+    if (status === "in progress") return "Em andamento";
+    if (status === "completed") return "Concluído";
+    if (status === "to do") return "Não iniciado";
+    return "Pendente";
   },
 };
 

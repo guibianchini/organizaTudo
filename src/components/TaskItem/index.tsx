@@ -1,7 +1,18 @@
 import { FC } from "react";
-import { IonBadge, IonItem, IonLabel } from "@ionic/react";
-import TaskService from "../../services/tasks";
+import {
+  IonCard,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonChip,
+  IonIcon,
+  IonLabel,
+  IonText,
+} from "@ionic/react";
 import TaskResponse from "../../types/TaskResponse";
+import clsx from "clsx";
+import TaskService from "../../services/tasks";
+import { checkmarkCircle, time } from "ionicons/icons";
 
 interface Props {
   task: TaskResponse;
@@ -10,23 +21,32 @@ interface Props {
 const TaskItem: FC<Props> = ({ task }) => {
   if (!task) return null;
 
-  const { id, title, status, dueDate } = task;
+  const { id, title, status } = task;
 
+  const statusText = TaskService.getTextFromStatus(status);
   const statusColor = TaskService.getColorFromStatus(status);
+  const statusIcon = status === "completed" ? checkmarkCircle : time;
 
   return (
-    <IonItem routerLink={`/task/${id}`}>
-      <IonLabel>
-        <h2>{title}</h2>
-        <IonBadge color={statusColor}>{status}</IonBadge>
-
-        {dueDate && (
-          <p className="text-muted" style={{ marginTop: "5px" }}>
-            Data de Entrega: {dueDate}
-          </p>
-        )}
-      </IonLabel>
-    </IonItem>
+    <IonCard routerLink={`/task/${id}`} mode="md">
+      <IonCardHeader>
+        <IonCardTitle className="">
+          <IonText
+            className={clsx("d-flex align-items-center gap-1", {
+              "text-decoration-line-through": status === "completed",
+            })}
+          >
+            {title}
+          </IonText>
+        </IonCardTitle>
+        <IonCardSubtitle>
+          <IonChip color={statusColor}>
+            <IonIcon icon={statusIcon} color={statusColor} />
+            <IonLabel>{statusText}</IonLabel>
+          </IonChip>
+        </IonCardSubtitle>
+      </IonCardHeader>
+    </IonCard>
   );
 };
 

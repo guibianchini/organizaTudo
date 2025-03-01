@@ -15,8 +15,12 @@ import {
   IonDatetimeButton,
   IonDatetime,
   IonText,
+  IonIcon,
+  IonSelect,
+  IonSelectOption,
 } from "@ionic/react";
 import TaskResponse from "../../types/TaskResponse";
+import { close } from "ionicons/icons";
 
 interface TaskFormProps {
   isOpen: boolean;
@@ -56,7 +60,8 @@ const TaskForm: React.FC<TaskFormProps> = ({
   }, [initialData, reset]);
 
   const onSubmit = (data: TaskResponse) => {
-    onSave({ ...data, updatedDate: null });
+    console.log(data);
+    onSave({ ...data, updatedDate: isEdit ? new Date().toISOString() : null });
     reset();
   };
 
@@ -75,7 +80,11 @@ const TaskForm: React.FC<TaskFormProps> = ({
           <IonTitle>Nova Tarefa</IonTitle>
           <IonButtons slot="end">
             <IonButton onClick={onDismiss}>
-              Fechar
+              <IonIcon
+                slot="icon-only"
+                icon={close}
+                className="ion-icon-primary"
+              />
             </IonButton>
           </IonButtons>
         </IonToolbar>
@@ -109,6 +118,30 @@ const TaskForm: React.FC<TaskFormProps> = ({
               </IonText>
             )}
           </IonItem>
+          <IonItem hidden={!isEdit}>
+            <IonLabel position="stacked">Status</IonLabel>
+            <Controller
+              control={control}
+              name="status"
+              render={({ field }) => (
+                <IonSelect
+                  {...field}
+                  onIonChange={(e) => field.onChange(e.detail.value)}
+                >
+                  <IonSelectOption value="to do">A Fazer</IonSelectOption>
+                  <IonSelectOption value="in progress">
+                    Em Progresso
+                  </IonSelectOption>
+                  <IonSelectOption value="completed">Concluído</IonSelectOption>
+                </IonSelect>
+              )}
+            />
+            {errors?.status && (
+              <IonText color="danger">
+                <small>{errors?.status?.message}</small>
+              </IonText>
+            )}
+          </IonItem>
           <IonItem>
             <IonLabel position="stacked">Data Prevista</IonLabel>
             <Controller
@@ -119,6 +152,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
                   <IonDatetimeButton datetime="datetime" className="pb-2" />
                   <IonModal keepContentsMounted={true}>
                     <IonDatetime
+                      {...field}
                       id="datetime"
                       prefer-wheel
                       min={new Date().toISOString()}
@@ -136,7 +170,11 @@ const TaskForm: React.FC<TaskFormProps> = ({
             )}
           </IonItem>
 
-          <IonButton expand="full" type="submit" className="mt-3 ion-button-primary">
+          <IonButton
+            expand="full"
+            type="submit"
+            className="mt-3 ion-button-primary"
+          >
             {isEdit ? "Salvar" : "Criar"}
           </IonButton>
         </form>
