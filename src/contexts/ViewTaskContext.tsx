@@ -1,16 +1,16 @@
 import React, { createContext, useContext } from "react";
-import Task from "../types/Task";
 import TaskService from "../services/tasks";
 import { useRequest } from "ahooks";
 import { useParams } from "react-router";
+import TaskResponse from "../types/TaskResponse";
 
 interface ViewTaskType {
-  task?: Task;
+  task?: TaskResponse;
   loading: boolean;
   error?: Error;
   fetchTask: () => void;
   deleteTask: (id: number) => void;
-  editTask: (task: Task) => void;
+  editTask: (task: TaskResponse) => void;
 }
 
 const ViewTask = createContext<ViewTaskType | undefined>(undefined);
@@ -32,7 +32,7 @@ export const ViewTaskProvider: React.FC<{ children: React.ReactNode }> = ({
     fetchTask();
   };
 
-  const editTask = async (task: Task) => {
+  const editTask = async (task: TaskResponse) => {
     await TaskService.update(task.id, task);
     fetchTask();
   };

@@ -1,4 +1,4 @@
-interface Task {
+interface TaskResponse {
   id: number;
   title: string;
   description: string;
@@ -9,4 +9,4 @@ interface Task {
   dueDate?: string | null;
 }
 
-export default Task;
+export default TaskResponse;

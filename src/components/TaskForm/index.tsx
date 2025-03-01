@@ -16,13 +16,13 @@ import {
   IonDatetime,
   IonText,
 } from "@ionic/react";
-import Task from "../../types/Task";
+import TaskResponse from "../../types/TaskResponse";
 
 interface TaskFormProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (task: Task) => void;
-  initialData?: Task;
+  onSave: (task: TaskResponse) => void;
+  initialData?: TaskResponse;
 }
 
 const TaskForm: React.FC<TaskFormProps> = ({
@@ -38,7 +38,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     reset,
     clearErrors,
     formState: { errors },
-  } = useForm<Task>({
+  } = useForm<TaskResponse>({
     defaultValues: initialData || {
       title: "",
       description: "",
@@ -55,7 +55,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     }
   }, [initialData, reset]);
 
-  const onSubmit = (data: Task) => {
+  const onSubmit = (data: TaskResponse) => {
     onSave({ ...data, updatedDate: null });
     reset();
   };

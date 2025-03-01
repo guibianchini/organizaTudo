@@ -10,14 +10,22 @@ import {
 import LoadingComponent from "../../components/LoadingComponent";
 import ErrorComponent from "../../components/ErrorComponent";
 import Header from "../../components/Header";
-import Task from "../../types/Task";
 import { add } from "ionicons/icons";
 import TaskItem from "../../components/TaskItem";
 import { useListTasksContext } from "../../contexts/ListTasksContext";
 import TaskForm from "../../components/TaskForm";
+import TaskResponse from "../../types/TaskResponse";
+import TasksFilter from "../../components/TasksFilter";
 
 const ListTasks: React.FC = () => {
-  const { loading, error, tasks, createTask } = useListTasksContext();
+  const {
+    loading,
+    error,
+    tasks,
+    createTask,
+    setSelectedStatus,
+    selectedStatus,
+  } = useListTasksContext();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   if (loading) {
@@ -45,9 +53,13 @@ const ListTasks: React.FC = () => {
   return (
     <IonPage>
       <Header title="Tarefas" />
+      <TasksFilter
+        onFilterChange={setSelectedStatus}
+        defaultValue={selectedStatus}
+      />
       <IonContent>
         <IonList>
-          {tasks?.map((task: Task) => (
+          {tasks?.map((task: TaskResponse) => (
             <TaskItem key={task?.id} task={task} />
           ))}
         </IonList>

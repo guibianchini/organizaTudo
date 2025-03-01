@@ -1,27 +1,34 @@
+import TaskParams from "../../types/TaskParams";
+import TaskResponse from "../../types/TaskResponse";
 import api from "../api";
-import Task from "../../types/Task";
 
 const TaskService = {
-  async get(): Promise<Task[]> {
-    const resultado: Task[] = await api().get("/tasks");
+  async get(params: Partial<TaskParams>): Promise<TaskResponse[]> {
+    const resultado: TaskResponse[] = await api().get("/tasks", {
+      params: {
+        _sort: "creationDate",
+        ...params,
+      },
+    });
     return resultado;
   },
 
-  async getById(id: number): Promise<Task> {
-    const resultado: Task = await api().get(`/tasks/${id}`);
+  async getById(id: number): Promise<TaskResponse> {
+    const resultado: TaskResponse = await api().get(`/tasks/${id}`);
     return resultado;
   },
 
-  async create(task: Omit<Task, "id">): Promise<Task> {
-    const resultado: Task = await api().post("/tasks", {
+  async create(task: Omit<TaskResponse, "id">): Promise<TaskResponse> {
+    const resultado: TaskResponse = await api().post("/tasks", {
       ...task,
+      id: 0,
       creationDate: new Date().toISOString(),
     });
     return resultado;
   },
 
-  async update(id: number, task: Task): Promise<Task> {
-    const resultado: Task = await api().put(`/tasks/${id}`, {
+  async update(id: number, task: TaskResponse): Promise<TaskResponse> {
+    const resultado: TaskResponse = await api().put(`/tasks/${id}`, {
       ...task,
       updatedDate: new Date().toISOString(),
     });
@@ -32,7 +39,7 @@ const TaskService = {
     await api().delete(`/tasks/${id}`);
   },
 
-  getColorFromStatus(status: Task["status"]): string {
+  getColorFromStatus(status: TaskResponse["status"]): string {
     if (status === "in progress") return "primary";
     if (status === "completed") return "success";
     return "light";

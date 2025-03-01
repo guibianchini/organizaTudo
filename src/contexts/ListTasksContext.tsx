@@ -1,36 +1,60 @@
-import React, { createContext, useContext } from "react";
-import Task from "../types/Task";
+import React, { createContext, useContext, useState } from "react";
 import TaskService from "../services/tasks";
 import { useRequest } from "ahooks";
+import TaskResponse from "../types/TaskResponse";
 
 interface ListTasksContextType {
-  tasks?: Task[];
-  loading: boolean;
+  createTask: (task: TaskResponse) => void;
   error?: Error;
   fetchTasks: () => void;
-  createTask: (task: Task) => void;
+  loading: boolean;
+  selectedStatus: TaskResponse["status"] | "all";
+  setSelectedStatus: (status: TaskResponse["status"] | "all") => void;
+  tasks?: TaskResponse[];
 }
 
-const ListTasksContext = createContext<ListTasksContextType | undefined>(undefined);
+const ListTasksContext = createContext<ListTasksContextType | undefined>(
+  undefined
+);
 
 export const ListTasksProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const [selectedStatus, setSelectedStatus] = useState<
+    TaskResponse["status"] | "all"
+  >("all");
+
   const {
     data: tasks,
     loading,
     error,
     run: fetchTasks,
-  } = useRequest(() => TaskService.get());
+  } = useRequest(
+    () =>
+      TaskService.get({
+        status: selectedStatus === "all" ? null : selectedStatus,
+      }),
+    {
+      refreshDeps: [selectedStatus],
+    }
+  );
 
-  const createTask = async (task: Task) => {
+  const createTask = async (task: TaskResponse) => {
     await TaskService.create(task);
     fetchTasks();
   };
 
   return (
     <ListTasksContext.Provider
-      value={{ tasks, loading, error, fetchTasks, createTask }}
+      value={{
+        createTask,
+        error,
+        fetchTasks,
+        loading,
+        selectedStatus,
+        setSelectedStatus,
+        tasks,
+      }}
     >
       {children}
     </ListTasksContext.Provider>
