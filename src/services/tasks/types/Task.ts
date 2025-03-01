@@ -5,6 +5,7 @@ interface Task {
   status: "to do" | "in progress" | "completed";
   completed: boolean;
   creationDate: string;
+  updatedDate?: string | null;
   dueDate?: string | null;
 }
 

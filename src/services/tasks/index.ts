@@ -13,12 +13,18 @@ const TaskService = {
   },
 
   async create(task: Omit<Task, "id">): Promise<Task> {
-    const resultado: Task = await api().post("/tasks", task);
+    const resultado: Task = await api().post("/tasks", {
+      ...task,
+      creationDate: new Date().toISOString(),
+    });
     return resultado;
   },
 
   async update(id: number, task: Task): Promise<Task> {
-    const resultado: Task = await api().put(`/tasks/${id}`, task);
+    const resultado: Task = await api().put(`/tasks/${id}`, {
+      ...task,
+      updatedDate: new Date().toISOString(),
+    });
     return resultado;
   },
 

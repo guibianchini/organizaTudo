@@ -1,4 +1,4 @@
-import { Redirect, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 
@@ -18,20 +18,16 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
-
-/* import '@ionic/react/css/palettes/dark.always.css'; */
-/* import '@ionic/react/css/palettes/dark.class.css'; */
-import "@ionic/react/css/palettes/dark.system.css";
+// import "@ionic/react/css/palettes/dark.system.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 /* Theme variables */
-import "./theme/variables.css";
-import Home from "./pages/Home/Home";
+import "./style/theme/variables.css";
+
+import Home from "./pages/Home";
+import Tasks from "./pages/Tasks";
+
+import { TaskProvider } from "./contexts/TasksContext";
 
 setupIonicReact();
 
@@ -39,12 +35,10 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
+        <Route path="/" component={Home} exact />
+        <TaskProvider>
+          <Route path="/tasks" component={Tasks} exact />
+        </TaskProvider>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
