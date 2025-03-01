@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IonContent, IonPage, IonList, IonButton } from "@ionic/react";
 import LoadingComponent from "../../components/LoadingComponent";
 import ErrorComponent from "../../components/ErrorComponent";
@@ -6,9 +6,11 @@ import Header from "../../components/Header";
 import Task from "../../services/tasks/types/Task";
 import TaskItem from "../../components/TaskItem";
 import { useTaskContext } from "../../contexts/TasksContext";
+import TaskForm from "../../components/TaskForm";
 
 const Tasks: React.FC = () => {
-  const { loading, error, tasks } = useTaskContext();
+  const { loading, error, tasks, createTask } = useTaskContext();
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   if (loading) {
     return (
@@ -41,7 +43,17 @@ const Tasks: React.FC = () => {
             <TaskItem key={task?.id} {...task} />
           ))}
         </IonList>
-        <IonButton expand="full">Nova Tarefa</IonButton>
+        <IonButton expand="full" onClick={() => setIsFormOpen(true)}>
+          Nova Tarefa
+        </IonButton>
+        <TaskForm
+          isOpen={isFormOpen}
+          onClose={() => setIsFormOpen(false)}
+          onSave={(task) => {
+            createTask(task);
+            setIsFormOpen(false);
+          }}
+        />
       </IonContent>
     </IonPage>
   );

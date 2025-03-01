@@ -8,6 +8,7 @@ interface TaskContextType {
   loading: boolean;
   error?: Error;
   fetchTasks: () => void;
+  createTask: (task: Task) => void;
 }
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -22,8 +23,15 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
     run: fetchTasks,
   } = useRequest(() => TaskService.get());
 
+  const createTask = async (task: Task) => {
+    await TaskService.create(task);
+    fetchTasks();
+  };
+
   return (
-    <TaskContext.Provider value={{ tasks, loading, error, fetchTasks }}>
+    <TaskContext.Provider
+      value={{ tasks, loading, error, fetchTasks, createTask }}
+    >
       {children}
     </TaskContext.Provider>
   );

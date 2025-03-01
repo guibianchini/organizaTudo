@@ -1,7 +1,7 @@
 {
   "tasks": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Concluir Documentação do Projeto",
       "description": "Finalizar a escrita e formatação da documentação do projeto para o lançamento.",
       "status": "to do",
@@ -9,7 +9,7 @@
       "creationDate": "2025-03-01T09:00:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Implementar Sistema de Autenticação",
       "description": "Configurar a autenticação de usuários com tokens JWT e integrar com o back-end.",
       "status": "in progress",
@@ -18,7 +18,7 @@
       "dueDate": "2025-03-08T18:00:00Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Correções de Bugs na Visualização Móvel",
       "description": "Resolver problemas de responsividade na visualização móvel e garantir compatibilidade entre dispositivos.",
       "status": "to do",
@@ -26,7 +26,7 @@
       "creationDate": "2025-03-03T12:00:00Z"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Otimização do Banco de Dados",
       "description": "Otimizar consultas e índices para melhorar o desempenho na produção.",
       "status": "completed",
@@ -35,7 +35,7 @@
       "dueDate": "2025-03-01T14:45:00Z"
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Redesign da Interface do Usuário",
       "description": "Redesenhar a interface principal para melhorar a usabilidade e atualizar a identidade visual.",
       "status": "in progress",
