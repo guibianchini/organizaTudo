@@ -1,9 +1,17 @@
 import React, { useState } from "react";
-import { IonContent, IonPage, IonList, IonButton } from "@ionic/react";
+import {
+  IonContent,
+  IonPage,
+  IonList,
+  IonFab,
+  IonFabButton,
+  IonIcon,
+} from "@ionic/react";
 import LoadingComponent from "../../components/LoadingComponent";
 import ErrorComponent from "../../components/ErrorComponent";
 import Header from "../../components/Header";
 import Task from "../../types/Task";
+import { add } from "ionicons/icons";
 import TaskItem from "../../components/TaskItem";
 import { useListTasksContext } from "../../contexts/ListTasksContext";
 import TaskForm from "../../components/TaskForm";
@@ -43,9 +51,11 @@ const ListTasks: React.FC = () => {
             <TaskItem key={task?.id} task={task} />
           ))}
         </IonList>
-        <IonButton expand="full" onClick={() => setIsFormOpen(true)}>
-          Nova Tarefa
-        </IonButton>
+        <IonFab vertical="bottom" horizontal="end">
+          <IonFabButton onClick={() => setIsFormOpen(true)}>
+            <IonIcon icon={add} />
+          </IonFabButton>
+        </IonFab>
         <TaskForm
           isOpen={isFormOpen}
           onClose={() => setIsFormOpen(false)}

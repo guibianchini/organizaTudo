@@ -16,7 +16,7 @@
   --ion-color-secondary-tint: #{$secondarycolor-light};
 }
 
-ion-button {
+ion-button, ion-fab-button {
   --background: #{$primarycolor};
   --background-hover: #{$primarycolor-light};
   --background-activated: #{$primarycolor-dark};
