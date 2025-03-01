@@ -16,7 +16,7 @@ import {
   IonDatetime,
   IonText,
 } from "@ionic/react";
-import Task from "../../services/tasks/types/Task";
+import Task from "../../types/Task";
 
 interface TaskFormProps {
   isOpen: boolean;
@@ -65,6 +65,8 @@ const TaskForm: React.FC<TaskFormProps> = ({
     clearErrors();
     reset();
   };
+
+  const isEdit = !!initialData;
 
   return (
     <IonModal isOpen={isOpen} onDidDismiss={onDismiss}>
@@ -135,7 +137,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
           </IonItem>
 
           <IonButton expand="full" type="submit" className="mt-3">
-            Criar Tarefa
+            {isEdit ? "Salvar" : "Criar"}
           </IonButton>
         </form>
       </IonContent>

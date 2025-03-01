@@ -1,5 +1,5 @@
 import api from "../api";
-import Task from "./types/Task";
+import Task from "../../types/Task";
 
 const TaskService = {
   async get(): Promise<Task[]> {

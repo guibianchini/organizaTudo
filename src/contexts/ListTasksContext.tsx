@@ -1,9 +1,9 @@
 import React, { createContext, useContext } from "react";
-import Task from "../services/tasks/types/Task";
+import Task from "../types/Task";
 import TaskService from "../services/tasks";
 import { useRequest } from "ahooks";
 
-interface TasksContextType {
+interface ListTasksContextType {
   tasks?: Task[];
   loading: boolean;
   error?: Error;
@@ -11,9 +11,9 @@ interface TasksContextType {
   createTask: (task: Task) => void;
 }
 
-const TasksContext = createContext<TasksContextType | undefined>(undefined);
+const ListTasksContext = createContext<ListTasksContextType | undefined>(undefined);
 
-export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({
+export const ListTasksProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const {
@@ -29,18 +29,18 @@ export const TasksProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <TasksContext.Provider
+    <ListTasksContext.Provider
       value={{ tasks, loading, error, fetchTasks, createTask }}
     >
       {children}
-    </TasksContext.Provider>
+    </ListTasksContext.Provider>
   );
 };
 
-export const useTasksContext = (): TasksContextType => {
-  const context = useContext(TasksContext);
+export const useListTasksContext = (): ListTasksContextType => {
+  const context = useContext(ListTasksContext);
   if (!context) {
-    throw new Error("useTasksContext must be used within a TaskProvider");
+    throw new Error("useListTasksContext must be used within a TaskProvider");
   }
   return context;
 };

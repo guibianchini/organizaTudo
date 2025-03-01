@@ -19,11 +19,12 @@
     },
     {
       "id": "3",
-      "title": "Correções de Bugs na Visualização Móvel",
+      "title": "Correções de Bugs na Visualização",
       "description": "Resolver problemas de responsividade na visualização móvel e garantir compatibilidade entre dispositivos.",
       "status": "to do",
       "finalized": false,
-      "creationDate": "2025-03-03T12:00:00Z"
+      "creationDate": "2025-03-03T12:00:00Z",
+      "updatedDate": "2025-03-01T18:54:24.416Z"
     },
     {
       "id": "4",

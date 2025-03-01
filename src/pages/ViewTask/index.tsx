@@ -8,10 +8,10 @@ import { useViewTask } from "../../contexts/ViewTaskContext";
 import ConfirmationModal from "../../components/ConfirmationModal";
 
 const ViewTask: React.FC = () => {
-  const { loading, error, task, deleteTask } = useViewTask();
+  const { loading, error, task, deleteTask, editTask } = useViewTask();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  
+
   if (loading) {
     return (
       <IonPage>
@@ -55,7 +55,7 @@ const ViewTask: React.FC = () => {
           color="danger"
           onClick={() => setShowDeleteModal(true)}
         >
-          Excluir Tarefa
+          Excluir
         </IonButton>
         <ConfirmationModal
           isOpen={showDeleteModal}
@@ -68,14 +68,15 @@ const ViewTask: React.FC = () => {
           color="primary"
           onClick={() => setIsFormOpen(true)}
         >
-          Editar Tarefa
+          Editar
         </IonButton>
 
         <TaskForm
           isOpen={isFormOpen}
           initialData={task}
           onClose={() => setIsFormOpen(false)}
-          onSave={() => {
+          onSave={(task) => {
+            editTask(task);
             setIsFormOpen(false);
           }}
         />

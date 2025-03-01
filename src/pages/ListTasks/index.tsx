@@ -3,13 +3,13 @@ import { IonContent, IonPage, IonList, IonButton } from "@ionic/react";
 import LoadingComponent from "../../components/LoadingComponent";
 import ErrorComponent from "../../components/ErrorComponent";
 import Header from "../../components/Header";
-import Task from "../../services/tasks/types/Task";
+import Task from "../../types/Task";
 import TaskItem from "../../components/TaskItem";
-import { useTasksContext } from "../../contexts/TasksContext";
+import { useListTasksContext } from "../../contexts/ListTasksContext";
 import TaskForm from "../../components/TaskForm";
 
-const Tasks: React.FC = () => {
-  const { loading, error, tasks, createTask } = useTasksContext();
+const ListTasks: React.FC = () => {
+  const { loading, error, tasks, createTask } = useListTasksContext();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   if (loading) {
@@ -59,4 +59,4 @@ const Tasks: React.FC = () => {
   );
 };
 
-export default Tasks;
+export default ListTasks;

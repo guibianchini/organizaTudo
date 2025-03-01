@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { IonBadge, IonItem, IonLabel } from "@ionic/react";
-import Task from "../../services/tasks/types/Task";
+import Task from "../../types/Task";
 import TaskService from "../../services/tasks";
 
 interface Props {
