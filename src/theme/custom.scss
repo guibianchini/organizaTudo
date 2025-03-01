@@ -1,0 +1,24 @@
+:root {
+  --ion-font-family: 'Roboto', sans-serif;
+
+  --ion-color-primary: #{$primarycolor};
+  --ion-color-primary-rgb: 76,175,80;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0,0,0;
+  --ion-color-primary-shade: #{$primarycolor-dark};
+  --ion-color-primary-tint: #{$primarycolor-light};
+
+  --ion-color-secondary: #{$secondarycolor};
+  --ion-color-secondary-rgb: 255,87,34;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255,255,255;
+  --ion-color-secondary-shade: #{$secondarycolor-dark};
+  --ion-color-secondary-tint: #{$secondarycolor-light};
+}
+
+ion-button {
+  --background: #{$primarycolor};
+  --background-hover: #{$primarycolor-light};
+  --background-activated: #{$primarycolor-dark};
+  --background-focused: #{$primarycolor-dark};
+}

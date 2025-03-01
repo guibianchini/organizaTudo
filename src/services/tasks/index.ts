@@ -31,6 +31,12 @@ const TaskService = {
   async delete(id: number): Promise<void> {
     await api().delete(`/tasks/${id}`);
   },
+
+  getColorFromStatus(status: Task["status"]): string {
+    if (status === "in progress") return "primary";
+    if (status === "completed") return "success";
+    return "light";
+  },
 };
 
 export default TaskService;

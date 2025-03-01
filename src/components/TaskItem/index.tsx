@@ -1,28 +1,16 @@
 import { FC } from "react";
-import { IonItem, IonLabel } from "@ionic/react";
-import clsx from "clsx";
+import { IonBadge, IonItem, IonLabel } from "@ionic/react";
 import Task from "../../services/tasks/types/Task";
+import TaskService from "../../services/tasks";
 
 const TaskItem: FC<Task> = ({ title, status, dueDate }) => {
-  const statusColor = clsx({
-    "bg-secondary": status === "to do",
-    "bg-primary": status === "in progress",
-    "bg-success": status === "completed",
-  });
+  const statusColor = TaskService.getColorFromStatus(status);
 
   return (
     <IonItem>
       <IonLabel>
         <h2>{title}</h2>
-        <span
-          className={clsx("badge", {
-            "badge-secondary": status === "to do",
-            "badge-primary": status === "in progress",
-            "badge-success": status === "completed",
-          })}
-        >
-          {status}
-        </span>
+        <IonBadge color={statusColor}>{status}</IonBadge>
 
         {dueDate && (
           <p className="text-muted" style={{ marginTop: "5px" }}>
@@ -31,7 +19,7 @@ const TaskItem: FC<Task> = ({ title, status, dueDate }) => {
         )}
       </IonLabel>
       <div
-        className={`${statusColor}`}
+        className={`bg-${statusColor}`}
         style={{ width: "10px", height: "100%" }}
       ></div>
     </IonItem>

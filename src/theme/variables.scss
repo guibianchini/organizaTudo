@@ -1,0 +1,12 @@
+// Criando novas variáveis para as cores primárias e secundárias ao invés de alterar as variáveis existentes, 
+// pois isso pode gerar conflitos com as classes e estilos padrão do Bootstrap. 
+// Assim, é possível utilizar as cores padrão do Bootstrap sem interferir nas modificações de paleta
+// que foi definido para a aplicação, permitindo um melhor controle sobre as cores.
+
+$primarycolor: #FF5722; 
+$primarycolor-light: #FF7043;  
+$primarycolor-dark: #D84315; 
+
+$secondarycolor: #4CAF50;  
+$secondarycolor-light: #81C784;  
+$secondarycolor-dark: #388E3C; 
