@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 
@@ -6,7 +6,6 @@ import "./theme/global.scss";
 
 import "@ionic/react/css/core.css";
 
-import Home from "./pages/Home";
 import Tasks from "./pages/ListTasks";
 
 import ViewTask from "./pages/ViewTask";
@@ -19,8 +18,7 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/" component={Home} />
-        <Route path="/tasks">
+        <Route exact path="/tasks">
           <ListTasksProvider>
             <Tasks />
           </ListTasksProvider>
@@ -29,6 +27,10 @@ const App: React.FC = () => (
           <ViewTaskProvider>
             <ViewTask />
           </ViewTaskProvider>
+        </Route>
+        {/* Redirecionar para a página de tarefas caso não encontre nenhuma rota existente */}
+        <Route>
+          <Redirect to="/tasks" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

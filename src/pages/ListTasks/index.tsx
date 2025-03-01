@@ -9,7 +9,7 @@ import {
 } from "@ionic/react";
 import LoadingComponent from "../../components/LoadingComponent";
 import ErrorComponent from "../../components/ErrorComponent";
-import Header from "../../components/Header";
+import Header from "../../components/HeaderComponent";
 import { add } from "ionicons/icons";
 import TaskItem from "../../components/TaskItem";
 import { useListTasksContext } from "../../contexts/ListTasksContext";
@@ -64,7 +64,10 @@ const ListTasks: React.FC = () => {
           ))}
         </IonList>
         <IonFab vertical="bottom" horizontal="end">
-          <IonFabButton onClick={() => setIsFormOpen(true)}>
+          <IonFabButton
+            onClick={() => setIsFormOpen(true)}
+            className="ion-button-primary"
+          >
             <IonIcon icon={add} />
           </IonFabButton>
         </IonFab>

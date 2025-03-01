@@ -4,11 +4,23 @@ import api from "../api";
 
 const TaskService = {
   async get(params: Partial<TaskParams>): Promise<TaskResponse[]> {
+    const queryParams: Partial<TaskParams> = {
+      _sort: "creationDate",
+      ...params,
+    };
+
+    if (params.status === "pending") {
+      // Se o status for "pending", busca apenas tarefas que NÃO são "completed".
+      queryParams.status_ne = "completed";
+      delete queryParams.status;
+    } else if (params.status) {
+      // Caso um status diferente seja informado, ele é utilizado diretamente no filtro.
+      queryParams.status = params.status;
+      delete queryParams.status_ne;
+    }
+
     const resultado: TaskResponse[] = await api().get("/tasks", {
-      params: {
-        _sort: "creationDate",
-        ...params,
-      },
+      params: queryParams,
     });
     return resultado;
   },

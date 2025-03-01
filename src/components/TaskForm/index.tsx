@@ -74,7 +74,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
         <IonToolbar>
           <IonTitle>Nova Tarefa</IonTitle>
           <IonButtons slot="end">
-            <IonButton onClick={onDismiss} color="primary">
+            <IonButton onClick={onDismiss}>
               Fechar
             </IonButton>
           </IonButtons>
@@ -136,7 +136,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
             )}
           </IonItem>
 
-          <IonButton expand="full" type="submit" className="mt-3">
+          <IonButton expand="full" type="submit" className="mt-3 ion-button-primary">
             {isEdit ? "Salvar" : "Criar"}
           </IonButton>
         </form>

@@ -1,10 +1,9 @@
 import React from "react";
 import { IonLabel, IonSegment, IonSegmentButton } from "@ionic/react";
-import TaskResponse from "../../types/TaskResponse";
 
 interface TaskFilterProps {
-  onFilterChange: (status: TaskResponse["status"] | "all") => void;
-  defaultValue?: TaskResponse["status"] | "all";
+  onFilterChange: (status: "all" | "pending" | "completed") => void;
+  defaultValue?: "all" | "pending" | "completed";
 }
 
 const TasksFilter: React.FC<TaskFilterProps> = ({
@@ -14,6 +13,7 @@ const TasksFilter: React.FC<TaskFilterProps> = ({
   return (
     <IonSegment
       value={defaultValue}
+      mode="md"
       onIonChange={(e: CustomEvent) => {
         onFilterChange(e.detail.value);
       }}
@@ -21,11 +21,8 @@ const TasksFilter: React.FC<TaskFilterProps> = ({
       <IonSegmentButton value="all">
         <IonLabel>Todos</IonLabel>
       </IonSegmentButton>
-      <IonSegmentButton value="to do">
-        <IonLabel>A Fazer</IonLabel>
-      </IonSegmentButton>
-      <IonSegmentButton value="in progress">
-        <IonLabel>Em Progresso</IonLabel>
+      <IonSegmentButton value="pending">
+        <IonLabel>Pendentes</IonLabel>
       </IonSegmentButton>
       <IonSegmentButton value="completed">
         <IonLabel>Concluídas</IonLabel>

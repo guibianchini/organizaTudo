@@ -8,8 +8,8 @@ interface ListTasksContextType {
   error?: Error;
   fetchTasks: () => void;
   loading: boolean;
-  selectedStatus: TaskResponse["status"] | "all";
-  setSelectedStatus: (status: TaskResponse["status"] | "all") => void;
+  selectedStatus: "all" | "pending" | "completed";
+  setSelectedStatus: (status: "all" | "pending" | "completed") => void;
   tasks?: TaskResponse[];
 }
 
@@ -21,7 +21,7 @@ export const ListTasksProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [selectedStatus, setSelectedStatus] = useState<
-    TaskResponse["status"] | "all"
+    "all" | "pending" | "completed"
   >("all");
 
   const {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IonContent, IonPage, IonButton, IonText } from "@ionic/react";
 import LoadingComponent from "../../components/LoadingComponent";
 import ErrorComponent from "../../components/ErrorComponent";
-import Header from "../../components/Header";
+import Header from "../../components/HeaderComponent";
 import TaskForm from "../../components/TaskForm";
 import { useViewTask } from "../../contexts/ViewTaskContext";
 import ConfirmationModal from "../../components/ConfirmationModal";
@@ -36,7 +36,7 @@ const ViewTask: React.FC = () => {
 
   return (
     <IonPage>
-      <Header title="Visualizar Tarefa" />
+      <Header title="Visualizar Tarefa" goBack={true} />
       <IonContent>
         <IonText>
           <h2>{task?.title}</h2>

@@ -1,7 +1,9 @@
 interface TaskParams {
   id: number;
-  status: "to do" | "in progress" | "completed" | null;
+  status: "all" | "pending" | "completed" | null;
   completed: boolean;
+  _sort: string;
+  status_ne: string | null;
 }
 
 export default TaskParams;
