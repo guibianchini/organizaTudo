@@ -9,6 +9,7 @@ interface TaskContextType {
   error?: Error;
   fetchTasks: () => void;
   createTask: (task: Task) => void;
+  deleteTask: (id: number) => void;
 }
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -28,9 +29,14 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({
     fetchTasks();
   };
 
+  const deleteTask = async (id: number) => {
+    await TaskService.delete(id);
+    fetchTasks();
+  };
+
   return (
     <TaskContext.Provider
-      value={{ tasks, loading, error, fetchTasks, createTask }}
+      value={{ tasks, loading, error, fetchTasks, createTask, deleteTask }}
     >
       {children}
     </TaskContext.Provider>
