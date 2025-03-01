@@ -60,7 +60,6 @@ const TaskForm: React.FC<TaskFormProps> = ({
   }, [initialData, reset]);
 
   const onSubmit = (data: TaskResponse) => {
-    console.log(data);
     onSave({ ...data, updatedDate: isEdit ? new Date().toISOString() : null });
     reset();
   };
