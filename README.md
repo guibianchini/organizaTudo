@@ -51,8 +51,8 @@ Antes de começar, verifique se você tem as seguintes ferramentas instaladas:
 #### 1. Clone o repositório:
    Clone o repositório do projeto para sua máquina local:
    ```bash
-   git clone git@github.com:guibianchini/organizatudo.git
-   cd organizatudo
+   git clone git@github.com:guibianchini/organizaTudo.git
+   cd organizaTudo
    ```
 
 #### 2. Instalar as dependências do projeto:
