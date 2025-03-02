@@ -12,11 +12,11 @@
       "id": "2",
       "title": "Implementar Sistema de Autenticação",
       "description": "Configurar a autenticação de usuários com tokens JWT e integrar com o back-end.",
-      "status": "in progress",
+      "status": "completed",
       "finalized": false,
       "creationDate": "2025-03-02T10:30:00Z",
       "dueDate": "2025-03-20T18:00:00",
-      "updatedDate": "2025-03-01T22:38:19.684Z"
+      "updatedDate": "2025-03-02T11:00:58.516Z"
     },
     {
       "id": "3",
@@ -47,43 +47,48 @@
     },
     {
       "id": "6",
-      "title": "Teste 1",
-      "description": "Teste",
+      "title": "Revisão de Código para Refatoração",
+      "description": "Revisar o código para identificar pontos de melhoria e refatoração de funções antigas.",
       "status": "to do",
-      "completed": false,
-      "creationDate": "2025-03-10T19:09:59.336Z",
-      "dueDate": null,
-      "updatedDate": null
+      "finalized": false,
+      "creationDate": "2025-03-01T10:00:00Z",
+      "dueDate": "2025-03-15T18:00:00Z"
     },
     {
       "id": "7",
-      "title": "Teste 2",
-      "description": "Teste 22",
-      "status": "to do",
-      "completed": false,
-      "creationDate": "2025-03-01T19:22:21.468Z",
-      "dueDate": null,
-      "updatedDate": null
+      "title": "Desenvolvimento de API RESTful",
+      "description": "Criar uma API RESTful para o gerenciamento de usuários e dados do sistema.",
+      "status": "in progress",
+      "finalized": false,
+      "creationDate": "2025-03-02T14:00:00Z",
+      "dueDate": "2025-03-20T12:00:00Z"
     },
     {
       "id": "8",
-      "title": "teste3",
-      "description": "teste 3",
+      "title": "Implementação de Sistema de Notificações",
+      "description": "Desenvolver um sistema de notificações em tempo real para os usuários do sistema.",
       "status": "to do",
-      "completed": false,
-      "creationDate": "2025-03-01T19:25:12.375Z",
-      "dueDate": null,
-      "updatedDate": null
+      "finalized": false,
+      "creationDate": "2025-03-03T11:00:00Z",
+      "dueDate": "2025-03-18T16:00:00Z"
     },
     {
       "id": "9",
-      "title": "teste 4",
-      "description": "teste 4",
-      "status": "to do",
-      "completed": false,
-      "creationDate": "2025-03-01T19:25:47.855Z",
-      "dueDate": null,
-      "updatedDate": null
+      "title": "Análise de Logs de Erro",
+      "description": "Analisar logs de erro do sistema e corrigir falhas críticas que afetam a operação.",
+      "status": "completed",
+      "finalized": true,
+      "creationDate": "2025-02-28T13:00:00Z",
+      "dueDate": "2025-03-01T12:00:00Z"
+    },
+    {
+      "id": "10",
+      "title": "Reunião de Planejamento do Sprint",
+      "description": "Realizar uma reunião com a equipe para planejar as atividades do próximo sprint.",
+      "status": "completed",
+      "finalized": true,
+      "creationDate": "2025-03-02T08:00:00Z",
+      "dueDate": "2025-03-02T10:00:00Z"
     }
   ]
 }
