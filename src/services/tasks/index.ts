@@ -1,3 +1,13 @@
+/**
+ * Serviço responsável por gerenciar as tarefas através da API.
+ *
+ * @module TaskService
+ *
+ * @description
+ * O `TaskService` oferece funções para interagir com a API de tarefas, permitindo obter, criar, atualizar, excluir tarefas
+ * e também realizar a conversão de status de tarefas para texto e cores correspondentes.
+ */
+
 import TaskParams from "../../types/TaskParams";
 import TaskResponse from "../../types/TaskResponse";
 import api from "../api";
@@ -10,12 +20,10 @@ const TaskService = {
     };
 
     if (params.status === "pending") {
-      // Se o status for "pending", busca apenas tarefas que NÃO são "completed".
-      queryParams.status_ne = "completed";
+      queryParams.status_ne = "completed"; // Se o status for "pending", busca apenas tarefas que NÃO são "completed".
       delete queryParams.status;
     } else if (params.status) {
-      // Caso um status diferente seja informado, ele é utilizado diretamente no filtro.
-      queryParams.status = params.status;
+      queryParams.status = params.status; // Caso um status diferente seja informado, ele é utilizado diretamente no filtro.
       delete queryParams.status_ne;
     }
 

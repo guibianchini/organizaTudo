@@ -1,3 +1,20 @@
+/**
+ * Componente de formulário para criação e edição de tarefas.
+ *
+ * Este modal permite que o usuário insira ou edite detalhes de uma tarefa,
+ * incluindo título, descrição, status e data prevista de conclusão.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <TaskForm
+ *   isOpen={isFormOpen}
+ *   onClose={() => setIsFormOpen(false)}
+ *   onSave={(task) => handleSave(task)}
+ * />
+ * ```
+ */
+
 import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
@@ -22,6 +39,9 @@ import {
 import TaskResponse from "../../types/TaskResponse";
 import { close } from "ionicons/icons";
 
+/**
+ * Propriedades esperadas pelo componente TaskForm.
+ */
 interface TaskFormProps {
   isOpen: boolean;
   onClose: () => void;

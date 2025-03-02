@@ -1,3 +1,19 @@
+/**
+ * Página de visualização de uma tarefa específica.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <ViewTask />
+ * ```
+ *
+ * @description
+ * Esta página exibe os detalhes de uma tarefa, incluindo título, status, descrição e data de entrega.
+ * Permite editar ou excluir a tarefa utilizando um formulário modal e um alerta de confirmação, respectivamente.
+ *
+ * @returns {JSX.Element} Página de visualização da tarefa.
+ */
+
 import React, { useState } from "react";
 import {
   IonContent,

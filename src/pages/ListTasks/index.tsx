@@ -1,3 +1,18 @@
+/**
+ * Página principal para listar e gerenciar tarefas.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <ListTasks />
+ * ```
+ *
+ * @description
+ * Este componente exibe a lista de tarefas com a opção de filtragem, criação de novas tarefas e mensagens de erro ou carregamento.
+ *
+ * @returns {JSX.Element} Página de listagem de tarefas.
+ */
+
 import React, { useState } from "react";
 import {
   IonContent,
@@ -6,6 +21,10 @@ import {
   IonFab,
   IonFabButton,
   IonIcon,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
 } from "@ionic/react";
 import LoadingComponent from "../../components/LoadingComponent";
 import ErrorComponent from "../../components/ErrorComponent";
@@ -57,12 +76,23 @@ const ListTasks: React.FC = () => {
         onFilterChange={setSelectedStatus}
         defaultValue={selectedStatus}
       />
-      <IonContent>
-        <IonList>
-          {tasks?.map((task: TaskResponse) => (
-            <TaskItem key={task?.id} task={task} />
-          ))}
-        </IonList>
+      <IonContent className="ion-padding">
+        {tasks?.length ? (
+          <IonList>
+            {tasks.map((task: TaskResponse) => (
+              <TaskItem key={task.id} task={task} />
+            ))}
+          </IonList>
+        ) : (
+          <IonCard>
+            <IonCardHeader>
+              <IonCardTitle>Nenhuma tarefa encontrada</IonCardTitle>
+            </IonCardHeader>
+            <IonCardContent>
+              Crie uma nova usando o botão (+) no rodapé.
+            </IonCardContent>
+          </IonCard>
+        )}
 
         <TaskForm
           isOpen={isFormOpen}

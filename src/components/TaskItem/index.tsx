@@ -1,3 +1,20 @@
+/**
+ * Componente `TaskItem` exibe as informações de uma tarefa dentro de um cartão interativo.
+ * Ele recebe um objeto `task` contendo os dados da tarefa, e dependendo do status da tarefa,
+ * exibe um ícone e um texto associados, com a possibilidade de navegar para uma página de detalhes.
+ *
+ * @component
+ * @example
+ * // Exemplo de uso do componente `TaskItem`:
+ * <TaskItem task={task} />
+ *
+ * @param {Object} props - Propriedades passadas para o componente.
+ * @param {TaskResponse} props.task - O objeto `task` que contém as informações da tarefa a ser exibida.
+ *
+ * @returns {JSX.Element | null} Retorna um cartão (`IonCard`) com título, subtítulo e status da tarefa.
+ * Se o objeto `task` estiver ausente, retorna `null`.
+ */
+
 import { FC } from "react";
 import {
   IonCard,
@@ -17,6 +34,12 @@ import { checkmarkCircle, time } from "ionicons/icons";
 interface Props {
   task: TaskResponse;
 }
+
+/**
+ * Componente responsável por exibir uma tarefa em forma de cartão.
+ * @param {Props} props - As propriedades do componente.
+ * @param {TaskResponse} props.task - Dados da tarefa a ser exibida.
+ */
 
 const TaskItem: FC<Props> = ({ task }) => {
   if (!task) return null;
